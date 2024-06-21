@@ -25,7 +25,7 @@ const Container = styled.div`
   gap: 3.2rem;
 `;
 
-export default function DashboardLayout({ children }) {
+export default function DashboardMainLayout({ children }) {
   return (
     <ProtectedRoute>
       <StyledAppLayout>

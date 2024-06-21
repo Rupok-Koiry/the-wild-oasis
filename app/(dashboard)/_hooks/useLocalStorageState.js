@@ -8,7 +8,6 @@ export function useLocalStorageState(initialState, key) {
 
   useEffect(
     function () {
-      console.log("THEME COLOR");
       // localStorage.setItem(key, JSON.stringify(value));
     },
     [value, key]
