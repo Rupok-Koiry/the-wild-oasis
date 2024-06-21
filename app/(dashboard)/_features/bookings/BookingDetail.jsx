@@ -1,0 +1,102 @@
+import styled from "styled-components";
+
+import BookingDataBox from "./BookingDataBox";
+import Row from "../../_ui/Row";
+import Heading from "../../_ui/Heading";
+import Tag from "../../_ui/Tag";
+import ButtonGroup from "../../_ui/ButtonGroup";
+import Button from "../../_ui/Button";
+import ButtonText from "../../_ui/ButtonText";
+
+import { useMoveBack } from "../../_hooks/useMoveBack";
+import { useBooking } from "./useBooking";
+import Spinner from "../../_ui/Spinner";
+import { HiArrowUpOnSquare } from "react-icons/hi2";
+import Modal from "../../_ui/Modal";
+import ConfirmDelete from "../../_ui/ConfirmDelete";
+import { useDeleteBooking } from "./useDeleteBooking";
+import Empty from "../../_ui/Empty";
+import { useCheckout } from "../check-in-out/useCheckout";
+import { useRouter } from "next/navigation";
+
+const HeadingGroup = styled.div`
+  display: flex;
+  gap: 2.4rem;
+  align-items: center;
+`;
+
+function BookingDetail() {
+  const { booking, isLoading } = useBooking();
+  const { checkout, isCheckingOut } = useCheckout();
+  const { deleteBooking, isDeleting } = useDeleteBooking();
+
+  const moveBack = useMoveBack();
+  const router = useRouter();
+
+  if (isLoading) return <Spinner />;
+  if (!booking) return <Empty resourceName="booking" />;
+
+  const { status, id: bookingId } = booking;
+
+  const statusToTagName = {
+    unconfirmed: "blue",
+    "checked-in": "green",
+    "checked-out": "silver",
+  };
+
+  return (
+    <>
+      <Row type="horizontal">
+        <HeadingGroup>
+          <Heading as="h1">Booking #{bookingId}</Heading>
+          <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
+        </HeadingGroup>
+        <ButtonText onClick={moveBack}>&larr; Back</ButtonText>
+      </Row>
+
+      <BookingDataBox booking={booking} />
+
+      <ButtonGroup>
+        {status === "unconfirmed" && (
+          <Button onClick={() => router.push(`/checkin/${bookingId}`)}>
+            Check in
+          </Button>
+        )}
+
+        {status === "checked-in" && (
+          <Button
+            icon={<HiArrowUpOnSquare />}
+            onClick={() => checkout(bookingId)}
+            disabled={isCheckingOut}
+          >
+            Check out
+          </Button>
+        )}
+
+        <Modal>
+          <Modal.Open opens="delete">
+            <Button variation="danger">Delete booking</Button>
+          </Modal.Open>
+
+          <Modal.Window name="delete">
+            <ConfirmDelete
+              resourceName="booking"
+              disabled={isDeleting}
+              onConfirm={() =>
+                deleteBooking(bookingId, {
+                  onSettled: () => router.back(),
+                })
+              }
+            />
+          </Modal.Window>
+        </Modal>
+
+        <Button variation="secondary" onClick={moveBack}>
+          Back
+        </Button>
+      </ButtonGroup>
+    </>
+  );
+}
+
+export default BookingDetail;
