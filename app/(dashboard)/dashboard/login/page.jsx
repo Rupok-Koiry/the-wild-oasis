@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from "react";
 import LoginForm from "../../_features/authentication/LoginForm";
 import Heading from "../../_ui/Heading";
 import Logo from "../../_ui/Logo";
@@ -15,6 +16,14 @@ const LoginLayout = styled.main`
 `;
 
 function Login() {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setLoading(false);
+  }, []);
+  if (loading) {
+    return null;
+  }
+
   return (
     <LoginLayout>
       <Logo />

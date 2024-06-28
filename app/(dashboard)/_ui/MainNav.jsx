@@ -7,6 +7,7 @@ import {
   HiOutlineUsers,
 } from "react-icons/hi2";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const NavList = styled.ul`
   display: flex;
@@ -28,7 +29,6 @@ const StyledNavLink = styled(Link)`
     transition: all 0.3s;
   }
 
-  /* This works because react-router places the active class on the active NavLink */
   &:hover,
   &:active,
   &.active:link,
@@ -53,40 +53,51 @@ const StyledNavLink = styled(Link)`
   }
 `;
 
+const links = [
+  {
+    href: "/dashboard",
+    icon: <HiOutlineHome />,
+    label: "Home",
+  },
+  {
+    href: "/dashboard/bookings",
+    icon: <HiOutlineCalendarDays />,
+    label: "Bookings",
+  },
+  {
+    href: "/dashboard/cabins",
+    icon: <HiOutlineHomeModern />,
+    label: "Cabins",
+  },
+  {
+    href: "/dashboard/users",
+    icon: <HiOutlineUsers />,
+    label: "Users",
+  },
+  {
+    href: "/dashboard/settings",
+    icon: <HiOutlineCog6Tooth />,
+    label: "Settings",
+  },
+];
+
 function MainNav() {
+  const pathname = usePathname();
+
   return (
     <nav>
       <NavList>
-        <li>
-          <StyledNavLink href="/dashboard">
-            <HiOutlineHome />
-            <span>Home</span>
-          </StyledNavLink>
-        </li>
-        <li>
-          <StyledNavLink href="/dashboard/bookings">
-            <HiOutlineCalendarDays />
-            <span>Bookings</span>
-          </StyledNavLink>
-        </li>
-        <li>
-          <StyledNavLink href="/dashboard/cabins">
-            <HiOutlineHomeModern />
-            <span>Cabins</span>
-          </StyledNavLink>
-        </li>
-        <li>
-          <StyledNavLink href="/dashboard/users">
-            <HiOutlineUsers />
-            <span>Users</span>
-          </StyledNavLink>
-        </li>
-        <li>
-          <StyledNavLink href="/dashboard/settings">
-            <HiOutlineCog6Tooth />
-            <span>Settings</span>
-          </StyledNavLink>
-        </li>
+        {links.map((link) => (
+          <li key={link.href}>
+            <StyledNavLink
+              href={link.href}
+              className={pathname === link.href ? "active" : ""}
+            >
+              {link.icon}
+              <span>{link.label}</span>
+            </StyledNavLink>
+          </li>
+        ))}
       </NavList>
     </nav>
   );

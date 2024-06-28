@@ -58,7 +58,9 @@ function BookingDetail() {
 
       <ButtonGroup>
         {status === "unconfirmed" && (
-          <Button onClick={() => router.push(`/checkin/${bookingId}`)}>
+          <Button
+            onClick={() => router.push(`/dashboard/checkin/${bookingId}`)}
+          >
             Check in
           </Button>
         )}

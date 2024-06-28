@@ -24,6 +24,14 @@ export default async function Navigation() {
           </Link>
         </li>
         <li>
+          <Link
+            href="/dashboard"
+            className="hover:text-accent-400 transition-colors"
+          >
+            Dashboard
+          </Link>
+        </li>
+        <li>
           {session?.user?.image ? (
             <Link
               href="/account"

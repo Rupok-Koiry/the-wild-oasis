@@ -42,7 +42,7 @@ function TodayItem({ activity }) {
           size="small"
           variation="primary"
           as={Link}
-          href={`/checkin/${id}`}
+          href={`/dashboard/checkin/${id}`}
         >
           Check in
         </Button>

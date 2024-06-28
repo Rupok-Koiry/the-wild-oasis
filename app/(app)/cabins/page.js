@@ -5,8 +5,7 @@ import Counter from "../_components/Counter";
 import Filter from "../_components/Filter";
 import ReservationReminder from "../_components/ReservationReminder";
 
-export const revalidate = 3600;
-// export const revalidate = 15;
+export const revalidate = 60;
 
 export const metadata = {
   title: "Cabins",
