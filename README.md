@@ -1,36 +1,102 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# [🏨 Hotel Management App](https://the-wild-oasis-beta-wine.vercel.app/)
 
-## Getting Started
+This is a **Hotel Management App** designed for hotel employees to streamline daily operations. The app includes user management, cabin and booking functionalities, and comprehensive dashboards to monitor performance and statistics.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🎯 Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### User Features
+- **🔒 Secure Login**: Hotel employees must log in to access the application.
+- **🆕 Employee Signup**: New accounts can only be created within the app to ensure authenticity.
+- **👤 Profile Management**: Employees can upload an avatar, and update their name and password.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Cabin Management
+- **🛏️ Cabin Overview**: A table view displaying cabin details including:
+  - Photo
+  - Name
+  - Capacity
+  - Price
+  - Current Discount
+- **✏️ Update/Delete Cabins**: Employees can edit or remove existing cabins.
+- **➕ Add New Cabins**: Create new cabins, including uploading photos.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Booking Management
+- **📅 Booking Overview**: A table view displaying booking details such as:
+  - Arrival and departure dates
+  - Status ("unconfirmed", "checked in", "checked out")
+  - Paid amount
+  - Cabin and guest data
+- **🔍 Filter Bookings**: Filter bookings by status for easier navigation.
+- **✅ Booking Actions**: Employees can:
+  - Delete bookings
+  - Check guests in and out
+  - Confirm payment upon check-in
+- **🍳 Add Breakfast**: Guests can add breakfast for their stay at check-in.
 
-## Learn More
+### Guest Management
+- **📝 Guest Data**: Store detailed guest information including:
+  - Full name
+  - Email
+  - National ID
+  - Nationality (with a country flag for easy identification)
+- **📋 Daily Task List**: Dashboard displays a list of guests checking in and out on the current day.
 
-To learn more about Next.js, take a look at the following resources:
+### Dashboard & Analytics
+- **📊 Performance Metrics**: Display key statistics for the last 7, 30, or 90 days:
+  - Bookings
+  - Sales
+  - Check-ins
+  - Occupancy rate
+- **📈 Sales Chart**: Visualize daily hotel sales, distinguishing between total and extras (e.g., breakfast).
+- **📉 Stay Duration Chart**: Analyze stay duration statistics to optimize operations.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### App Settings
+- **⚙️ Configurable Settings**: Employees can set application-wide settings such as:
+  - Breakfast price
+  - Minimum and maximum nights per booking
+  - Maximum guests per booking
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### UI Features
+- **🌗 Dark Mode**: Toggle between light and dark modes for better usability.
+- **💡 Intuitive Design**: Modern and user-friendly interface for efficient navigation.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🚀 Installation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Clone the repository to your local machine:
+
+   ```bash
+   git clone https://github.com/yourusername/hotel-management-app.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd hotel-management-app
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Start the app:
+
+   ```bash
+   npm start
+   ```
+
+---
+
+## 🛠️ Technologies Used
+
+- **React**: For building the user interface.
+- **Node.js**: Backend server and API handling.
+- **Express.js**: For routing and middleware.
+- **MongoDB**: Database for storing cabin, booking, and guest data.
+- **Chart.js**: For creating interactive charts.
+- **React Query**: For application state management.
+- **TypeScript**: Ensures type safety and robust code.
